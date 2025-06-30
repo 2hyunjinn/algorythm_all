@@ -10,11 +10,13 @@ class Solution {
         
         while(pq.peek() < K){
             if(pq.size() < 2) return -1;
+            
             int a = pq.poll();
-            if(a >= K) return answer;
+            if(a >= K) return answer;    
+            
             int b = pq.poll();
-            pq.offer(a + b*2);
             answer++;
+            pq.offer(a+b*2);
         }
         return answer;
     }
