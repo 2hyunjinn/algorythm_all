@@ -5,15 +5,9 @@ class Solution {
         List<Integer> answer = new LinkedList<>();
         
         for(int[] c : commands){
-            int i = c[0]-1;
-            int j = c[1]-1;
-            int k = c[2]-1;
-            List<Integer> list = new LinkedList<>();
-            for(int idx = i; idx <= j; idx++){
-                list.add(array[idx]);
-            }
-            Collections.sort(list);
-            answer.add(list.get(k));
+            int[] list = Arrays.copyOfRange(array, c[0]-1, c[1]);
+            Arrays.sort(list);
+            answer.add(list[c[2]-1]);
         }
         
         return answer;
