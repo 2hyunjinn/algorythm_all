@@ -5,12 +5,8 @@ class Solution {
         int answer = 0;
         Arrays.sort(citations);
         for(int i = 0; i<citations.length; i++){
-            if(citations[i] >= citations.length - i) {
-                answer = citations.length - i;
-                return answer;
-            }
+            if(citations[i] >= i) answer++;
         }
-
         return answer;
     }
 }
