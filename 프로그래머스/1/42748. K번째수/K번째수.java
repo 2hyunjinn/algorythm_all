@@ -1,15 +1,18 @@
 import java.util.*;
 
 class Solution {
-    public List<Integer> solution(int[] array, int[][] commands) {
-        List<Integer> answer = new LinkedList<>();
-        
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
+        int idx = 0;
         for(int[] c : commands){
-            int[] list = Arrays.copyOfRange(array, c[0]-1, c[1]);
-            Arrays.sort(list);
-            answer.add(list[c[2]-1]);
+            int i = c[0] - 1;
+            int j = c[1];
+            int k = c[2] - 1;
+            int[] arr = Arrays.copyOfRange(array, i, j);
+            Arrays.sort(arr);
+            answer[idx] = arr[k];
+            idx++;
         }
-        
         return answer;
     }
 }
