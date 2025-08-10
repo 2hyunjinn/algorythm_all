@@ -1,12 +1,19 @@
 import java.util.*;
 
 public class Solution {
-    public Stack<Integer> solution(int []arr) {
-        Stack<Integer> s = new Stack<>();
+    public int[] solution(int []arr) {
+        Stack<Integer> q = new Stack<>();
         for(int a : arr){
-            if(!s.isEmpty() && s.peek() == a) continue;
-            s.push(a);
+            if(!q.isEmpty() && q.peek() == a) continue;
+            q.push(a);
         }
-        return s;
+        int[] answer = new int[q.size()];
+        int idx = 0;
+        for(int a : q){
+            answer[idx] = a;
+            idx++;
+        }
+
+        return answer;
     }
 }
