@@ -1,36 +1,36 @@
 import java.util.*;
 
 class Solution {
-    private static HashSet<Integer> primeN = new HashSet<>();
+    private static Set<Integer> set = new HashSet<>();
     private static boolean[] visited;
+    
+    public int solution(String numbers) {
+        int answer = 0;
+        String[] num = numbers.split("");
+        visited = new boolean[num.length];
+        dfs("", num);
 
-    public static int solution(String numbers) {
-        String[] number = numbers.split("");
-        visited = new boolean[number.length];
-        dfs("", number);
-        return primeN.size();
+        return set.size();
     }
-
-    private static void dfs(String current, String[] number) {
-        if(!current.equals("")){
-            if(isPrime(current)) primeN.add(Integer.parseInt(current));
+    
+    private void dfs(String now, String[] num){
+        if(!now.equals("")){ // 빈 배열이 아니라면
+            int n = Integer.parseInt(now);
+            if(isPrime(n)) set.add(n);
         }
-
-        for(int i = 0; i < number.length; i++){
-            if(!visited[i]){
-                visited[i] = true;
-                dfs(current+number[i], number);
-                visited[i] = false;
-            }
+        
+        for(int i = 0; i<num.length; i++){
+            if(visited[i] == true) continue;
+            visited[i] = true;
+            dfs(now+num[i], num);
+            visited[i] = false;
         }
     }
-
-    private static boolean isPrime(String num){
-        int n = Integer.parseInt(num);
-
+    
+    private boolean isPrime(int n){
         if(n <= 1) return false;
-        if(n == 2) return true;
-
+        if(n <= 3) return true;
+        
         for(int i = 2; i<=Math.sqrt(n); i++){
             if(n%i == 0) return false;
         }
